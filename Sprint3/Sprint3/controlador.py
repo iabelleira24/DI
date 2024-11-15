@@ -40,7 +40,7 @@ class GameController:
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/carta%20comun.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-art-academy-pikachu-drawing-pokemon-cartoon-fictional-character-pokemon.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-x-and-y-ash-ketchum-charmander-pokemon-background-orange-cartoon-fictional-character.png",
-           
+
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(5).png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(6).png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(7).jpg",
@@ -51,7 +51,8 @@ class GameController:
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(12).jpg",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(13).jpg",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(14).jpg"
-
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/4b70674ba6a01ee762084d90c8883903.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/ce4f00bd6e65ce915aaa61bc5c0eb315.jpg",
         ]
         self.images = []
 
