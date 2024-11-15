@@ -20,7 +20,6 @@ class GameController:
         self.start_time = 0
         self.images_loaded = False
         self.image_urls = [
-            # Lista de URLs para las imágenes
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/125-1251347_jigglypuff-drawing-pencil-single-pokemon-images-with-name.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/967985ca22b2b00b485eca2bd47295d2.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(1).jpg",
@@ -40,7 +39,19 @@ class GameController:
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/carta%20comun.png",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-art-academy-pikachu-drawing-pokemon-cartoon-fictional-character-pokemon.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-x-and-y-ash-ketchum-charmander-pokemon-background-orange-cartoon-fictional-character.png"
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-x-and-y-ash-ketchum-charmander-pokemon-background-orange-cartoon-fictional-character.png",
+           
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(5).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(6).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(7).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(8).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(9).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(10).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(11).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(12).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(13).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(14).jpg"
+
         ]
         self.images = []
 
