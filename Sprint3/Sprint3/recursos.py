@@ -1,16 +1,16 @@
 import requests
-from PIL import Image, ImageTk
-import io
+from io import BytesIO
+from PIL import Image
 
 
-def descargar_imagen(url, size=(150, 150)):
+def descargar_imagen(url, callback):
+    """Descargar la imagen desde una URL y llamar al callback con la imagen cargada"""
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        image = Image.open(io.BytesIO(response.content))
-        image = image.resize(size, Image.LANCZOS)
-        return ImageTk.PhotoImage(image)
-
-    except requests.RequestException as e:
-        print(f"Error al descargar la imagen de {url}: {e}")
-        return None
+        # Descargar la imagen desde la URL
+        res = requests.get(url)
+        res.raise_for_status()  # Lanza una excepción si la descarga falla
+        imagen = Image.open(BytesIO(res.content))  # Cargar la imagen con PIL
+        callback(imagen)  # Llamar al callback pasando la imagen descargada
+    except requests.exceptions.RequestException as e:
+        print(f"Error al descargar la imagen: {e}")
+        callback(None)  # Llamar al callback con None en caso de error

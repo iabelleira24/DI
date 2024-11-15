@@ -1,103 +1,85 @@
-import threading
-import time
-from recursos import descargar_imagen
+from datetime import datetime
+import os
 import random
 
-
 class GameModel:
-    def __init__(self, difficulty):
-        self.difficulty = difficulty
-        self.board = self._generate_board(difficulty)
-        self.hidden_image = None
-        self.images = {}
-        self.images_loaded = False
-        self.selected_positions = []
-        self.moves = 0
-        self.start_time = None
-        self.is_game_over = False
-        self._load_images()
+    def __init__(self, difficulty_level):
+        self.difficulty_level = difficulty_level
+        self.board = []
+        self.rows = 0
+        self.cols = 0
+        self.timer_active = False
+        self.elapsed_time = 0
+        self.high_scores = self.load_high_scores()
+        self._initialize_board()
 
-    def _load_images(self):
-        url_base = ""
+    def _initialize_board(self):
+        """Crea el tablero según la dificultad."""
+        pairs = {"facil": 8, "medio": 18, "dificil": 32}.get(self.difficulty_level)
+        if not pairs:
+            raise ValueError("Nivel de dificultad no reconocido")
 
-        def load_images_thread():
-            self.hidden_image = descargar_imagen(url_base + "hidden.png")
-            unique_image_ids = []
-            for row in self.board:
-                for image_id in row:
-                    if image_id not in unique_image_ids:
-                        unique_image_ids.append(image_id)
-            for image_id in unique_image_ids:
-                self.images[image_id] = descargar_imagen(f"{url_base}{image_id}.png")
-            self.images_loaded = True
-
-        threading.Thread(target=load_images_thread, daemon=True).start()
-
-    def _generate_board(self, difficulty):
-        if difficulty == "facil":
-            num_pairs = 4
-        elif difficulty == "medio":
-            num_pairs = 8
-        elif difficulty == "dificil":
-            num_pairs = 12
-        else:
-            raise ValueError("Dificultad no válida")
-
-        image_ids = list(range(1, num_pairs + 1)) * 2
-        random.shuffle(image_ids)
-        board_size = int(len(image_ids) ** 0.5)
-        board = [image_ids[i * board_size:(i + 1) * board_size] for i in range(board_size)]
-        return board
+        cards = [i for i in range(pairs)] * 2
+        random.shuffle(cards)
+        self.board = cards
+        self.rows, self.cols = {16: (4, 4), 36: (6, 6), 64: (8, 8)}.get(len(cards), (0, 0))
 
     def start_timer(self):
-        if not self.start_time:
-            self.start_time = time.time()
+        """Inicia el temporizador."""
+        if not self.timer_active:
+            self.timer_active = True
+            self.elapsed_time = 0
 
-    def check_match(self, pos1, pos2):
-        row1, col1 = pos1
-        row2, col2 = pos2
-        return self.board[row1][col1] == self.board[row2][col2]
+    def _tick_timer(self):
+        """Incrementa el tiempo si el temporizador está activo."""
+        if self.timer_active:
+            self.elapsed_time += 1
+        return self.elapsed_time
 
-    def is_game_complete(self):
-        for row in self.board:
-            for image_id in row:
-                if image_id != 0:
-                    return False
-        self.is_game_over = True
-        return True
+    def save_high_score(self, player_name, moves, time_spent):
+        """Guarda la puntuación en archivo y memoria."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        record = f"{player_name},{self.difficulty_level},{moves},{time_spent},{timestamp}\n"
 
-    def mark_pair_found(self, pos1, pos2):
-        row1, col1 = pos1
-        row2, col2 = pos2
-        self.board[row1][col1] = 0
-        self.board[row2][col2] = 0
-
-    def increment_move_count(self):
-        self.moves += 1
-
-    def get_elapsed_time(self):
-        if self.start_time:
-            return int(time.time() - self.start_time)
-        return 0
-
-    def save_score(self, player_name):
         with open("ranking.txt", "a") as file:
-            score_data = f"{player_name},{self.difficulty},{self.moves},{self.get_elapsed_time()}\n"
-            file.write(score_data)
+            file.write(record)
 
-    def load_scores(self):
+        self.high_scores[self.difficulty_level].append({
+            "name": player_name,
+            "difficulty": self.difficulty_level,
+            "moves": moves,
+            "time_spent": time_spent,
+            "date": timestamp
+        })
+        self._organize_high_scores()
+
+    def _organize_high_scores(self):
+        """Mantiene ordenadas las 3 mejores puntuaciones por dificultad."""
+        for level in self.high_scores:
+            self.high_scores[level] = sorted(
+                self.high_scores[level],
+                key=lambda x: (x['moves'], x['time_spent'])
+            )[:3]
+
+    def load_high_scores(self):
+        """Carga puntuaciones desde el archivo."""
         scores = {"facil": [], "medio": [], "dificil": []}
-        try:
-            with open("ranking.txt", "r") as file:
-                for line in file:
-                    name, difficulty, moves, time_taken = line.strip().split(",")
-                    scores[difficulty].append({
-                        "name": name,
-                        "moves": int(moves),
-                        "time": int(time_taken)
-                    })
-            for difficulty in scores:
-                scores[difficulty] = sorted(scores[difficulty], key=lambda x: (x["moves"], x["time"]))[:3]
-        except FileNotFoundError:
-            pass
+
+        if not os.path.isfile("ranking.txt"):
+            return scores
+
+        with open("ranking.txt", "r") as file:
+            for line in file:
+                name, difficulty, moves, time_spent, date = line.strip().split(",")
+                scores[difficulty].append({
+                    "name": name,
+                    "difficulty": difficulty,
+                    "moves": int(moves),
+                    "time_spent": int(time_spent),
+                    "date": date
+                })
+
+        for level in scores:
+            scores[level] = sorted(scores[level], key=lambda x: (x['moves'], x['time_spent']))[:3]
+
         return scores
