@@ -51,8 +51,7 @@ class GameController:
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(12).jpg",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(13).jpg",
             "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(14).jpg"
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/4b70674ba6a01ee762084d90c8883903.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/ce4f00bd6e65ce915aaa61bc5c0eb315.jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/ce4f00bd6e65ce915aaa61bc5c0eb315.jpg"
         ]
         self.images = []
 
@@ -173,7 +172,7 @@ class GameController:
 
     def on_card_click(self, index):
         """Acción cuando se hace clic en una carta"""
-        # Verificar si ya hay dos cartas volteadas o si el índice ya está en `selected`
+        # Verificar si ya hay dos cartas volteadas o si el índice ya está en selected
         if len(self.selected) == 2 or any(index == selected[0] for selected in self.selected):
             return  # Si ya hay dos cartas volteadas o es la misma carta, no hacer nada
 

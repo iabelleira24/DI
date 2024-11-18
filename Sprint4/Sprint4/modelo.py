@@ -3,8 +3,6 @@ import os
 import random
 
 
-
-
 class GameModel:
     def __init__(self, difficulty):
         self.difficulty = difficulty
@@ -110,7 +108,6 @@ class GameModel:
                     "time_taken": int(time_taken),
                     "date": date
                 })
-
 
         for difficulty in scores:
             scores[difficulty] = sorted(scores[difficulty], key=lambda x: (x['moves'], x['time_taken']))[:3]

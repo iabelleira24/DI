@@ -1,5 +1,5 @@
 import tkinter as tk
-from controlador import GameController
+from controlador import GameController  # Asegúrate de que este archivo esté en el mismo directorio
 
 def main():
     # Crear la ventana principal (root) de Tkinter
