@@ -15,7 +15,7 @@ class GameModel:
         self._generate_board()  # Generar el tablero en la inicialización
 
     def _generate_board(self):
-        """Generar el tablero con posiciones aleatorias basadas en la dificultad"""
+        #Generar el tablero con posiciones aleatorias basadas en la dificultad
         if self.difficulty == "facil":
             num_pairs = 8  # 8 pares de cartas = 16 cartas
         elif self.difficulty == "medio":
@@ -45,20 +45,20 @@ class GameModel:
             self.cols = 8
 
     def start_timer(self):
-        """Iniciar el temporizador si no ha comenzado"""
+        # Iniciar el temporizador si no ha comenzado
         if not self.time_started:
             self.time_started = True
             self.time_elapsed = 0  # Resetear el tiempo
             self.update_timer()  # Llamar a update_timer para empezar a contar
 
     def update_timer(self):
-        """Actualizar el temporizador cada segundo"""
+        # Actualizar el temporizador cada segundo
         if self.time_started:
             self.time_elapsed += 1
         return self.time_elapsed  # Retornar el valor actualizado de tiempo
 
     def save_score(self, player_name, moves, time_taken):
-        """Guardar la puntuación en el archivo ranking.txt y en memoria"""
+        # Guardar la puntuación en el archivo ranking.txt y en memoria
         fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         score_line = f"{player_name},{self.difficulty},{moves},{time_taken},{fecha}\n"
 
@@ -79,7 +79,7 @@ class GameModel:
         self.sort_scores()
 
     def sort_scores(self):
-        """Ordenar las puntuaciones por dificultad y mantener las 3 mejores"""
+        # Ordenar las puntuaciones por dificultad y mantener las 3 mejores
         # Ordenamos por dificultad, luego por el número de movimientos (menos es mejor), y finalmente por el tiempo (menos es mejor)
         for difficulty in self.scores:
             # Ordenamos por número de movimientos (menos es mejor) y luego por tiempo (menos es mejor)
@@ -89,7 +89,7 @@ class GameModel:
         print("Puntuaciones ordenadas:", self.scores)
 
     def load_scores(self):
-        """Cargar las puntuaciones desde el archivo ranking.txt"""
+        #Cargar las puntuaciones desde el archivo ranking.txt
         # Si el archivo no existe, retornamos las puntuaciones vacías
         scores = {"facil": [], "medio": [], "dificil": []}
 
@@ -109,7 +109,8 @@ class GameModel:
                     "date": date
                 })
 
+        # Ordenar las puntuaciones tras cargar los datos
         for difficulty in scores:
             scores[difficulty] = sorted(scores[difficulty], key=lambda x: (x['moves'], x['time_taken']))[:3]
 
-        return scores
+        return scores  # Retornamos las puntuaciones cargadas

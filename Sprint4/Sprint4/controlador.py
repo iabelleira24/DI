@@ -20,46 +20,47 @@ class GameController:
         self.start_time = 0
         self.images_loaded = False
         self.image_urls = [
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/125-1251347_jigglypuff-drawing-pencil-single-pokemon-images-with-name.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/967985ca22b2b00b485eca2bd47295d2.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(1).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(2).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(3).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(4).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(5).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(6).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP.jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(1).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(1).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(2).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(2).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(3).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(4).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R.jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/carta%20comun.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-art-academy-pikachu-drawing-pokemon-cartoon-fictional-character-pokemon.png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/png-transparent-pokemon-go-pokemon-x-and-y-ash-ketchum-charmander-pokemon-background-orange-cartoon-fictional-character.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/125-1251347_jigglypuff-drawing-pencil-single-pokemon-images-with-name.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/967985ca22b2b00b485eca2bd47295d2.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(1).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(2).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(3).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(4).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(5).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(6).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP.jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(1).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(1).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(2).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(2).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(3).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(4).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R.jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/carta%20comun.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/png-transparent-pokemon-go-pokemon-art-academy-pikachu-drawing-pokemon-cartoon-fictional-character-pokemon.png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/png-transparent-pokemon-go-pokemon-x-and-y-ash-ketchum-charmander-pokemon-background-orange-cartoon-fictional-character.png",
 
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(5).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/R%20(6).png",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(7).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(8).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(9).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(10).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(11).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(12).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(13).jpg",
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/OIP%20(14).jpg"
-            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint3/imagenes%20poke/ce4f00bd6e65ce915aaa61bc5c0eb315.jpg"
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(5).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/R%20(6).png",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(7).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(8).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(9).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(10).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(11).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(12).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(13).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/OIP%20(14).jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/ce4f00bd6e65ce915aaa61bc5c0eb315.jpg",
+            "https://raw.githubusercontent.com/iabelleira24/DI/main/Sprint4/imagenes%20poke/4b70674ba6a01ee762084d90c8883903.png",
         ]
         self.images = []
 
         self.main_menu = MainMenu(self.root, self.start_game_callback, self.show_stats_callback, self.quit_callback)
 
     def start_game_callback(self):
-        """Iniciar el juego y seleccionar la dificultad."""
-        # Limpiar el estado del juego anterior
+        # Iniciar el juego y seleccionar la dificultad.
+
         self.game_model = None
         self.game_view = None
         self.selected = []
@@ -72,9 +73,9 @@ class GameController:
         self.show_difficulty_selection()
 
     def show_difficulty_selection(self):
-        """Seleccionar la dificultad y generar el tablero de juego."""
+
         difficulty = simpledialog.askstring("Selecciona la dificultad",
-                                            "Elige la dificultad: fácil, medio, difícil",
+                                            "Elige la dificultad: facil, medio, dificil",
                                             parent=self.root).lower()
 
         if difficulty is None:
@@ -100,7 +101,7 @@ class GameController:
             messagebox.showwarning("Dificultad inválida", "Por favor elige una dificultad válida.")
 
     def show_loading_window(self):
-        """Mostrar ventana de carga mientras las imágenes se descargan."""
+
         if hasattr(self, 'loading_window') and self.loading_window.winfo_exists():
             self.loading_window.destroy()  # Si la ventana ya existe, la destruimos
 
@@ -134,7 +135,7 @@ class GameController:
         descargar_imagen(url, self.image_downloaded_callback)
 
     def image_downloaded_callback(self, imagen):
-        """Callback que maneja la imagen descargada."""
+
         if imagen:
             self.images.append(imagen)  # Añadir la imagen descargada a la lista
         else:
@@ -144,7 +145,7 @@ class GameController:
         self.check_images_loaded()  # Comprobar si todas las imágenes han sido descargadas
 
     def check_images_loaded(self):
-        """Verificar si todas las imágenes están cargadas y proceder con la vista de juego."""
+
         if len(self.images) == len(self.image_urls):
             # Aquí puedes proceder con la lógica para continuar con el juego
             print("Todas las imágenes están cargadas")
@@ -158,7 +159,7 @@ class GameController:
             self.start_game_window()  # Iniciar la nueva ventana de juego
 
     def start_game_window(self):
-        """Abrir la ventana para mostrar el tablero de juego"""
+
         self.root.withdraw()  # Ocultar la ventana principal del menú
         game_window = tk.Toplevel(self.root)  # Crear nueva ventana para el juego
         game_window.title("Juego de Memoria")
@@ -187,7 +188,7 @@ class GameController:
             self.handle_card_selection()
 
     def handle_card_selection(self):
-        """Verificar si las cartas seleccionadas coinciden"""
+        # Verificar si las cartas seleccionadas coinciden
         card1_index, card1_value = self.selected[0]
         card2_index, card2_value = self.selected[1]
 
@@ -206,19 +207,19 @@ class GameController:
         self.selected = []
 
     def increment_move_count(self):
-        """Incrementar el contador de movimientos y actualizar la vista"""
+
         self.move_count += 1
         self.game_view.update_moves(self.move_count)
 
     def update_time(self):
-        """Actualizar el temporizador cada segundo"""
+
         if self.root.winfo_exists():  # Verificamos si la ventana principal sigue existiendo
             self.start_time += 1
             self.game_view.update_timer(self.start_time)
             self.root.after(1000, self.update_time)  # Llamar a la función cada segundo
 
     def check_victory(self):
-        """Comprobar si todas las cartas han sido emparejadas"""
+
         if len(self.game_view.matched_cards) == len(self.game_model.board):
             messagebox.showinfo("¡Felicidades!", "¡Has ganado!")
 
@@ -229,7 +230,7 @@ class GameController:
             self.root.after(100, self.return_to_main_menu)
 
     def return_to_main_menu(self):
-        """Redirigir al menú principal sin cerrar la aplicación"""
+
         self.game_view.frame.destroy()  # Destruir el marco del juego
         self.game_view = None  # Limpiar la referencia de la vista
         self.selected = []  # Limpiar las cartas seleccionadas
@@ -241,7 +242,7 @@ class GameController:
         self.root.deiconify()  # Mostrar el menú principal nuevamente
 
     def show_stats_callback(self):
-        """Mostrar las estadísticas del juego"""
+
         # Aquí comprobamos si self.game_model es None, pero aún así procedemos a mostrar las puntuaciones
         if self.game_model is None:
             messagebox.showinfo("Estadísticas", "No hay estadísticas disponibles. No se ha jugado ningún juego aún.")
@@ -261,5 +262,5 @@ class GameController:
         messagebox.showinfo("Estadísticas", stats_message)
 
     def quit_callback(self):
-        """Cerrar la aplicación"""
+
         self.root.quit()
