@@ -1,0 +1,49 @@
+com.example.videojuegoslista.app-lifecycle-process-2.6.2-0 C:\Users\iagoa\.gradle\caches\transforms-4\04133194067ef29aa567def949a91907\transformed\lifecycle-process-2.6.2\res
+com.example.videojuegoslista.app-lifecycle-runtime-ktx-2.6.2-1 C:\Users\iagoa\.gradle\caches\transforms-4\0507d9fe7a4b36026f2d938e44283d0c\transformed\lifecycle-runtime-ktx-2.6.2\res
+com.example.videojuegoslista.app-emoji2-views-helper-1.3.0-2 C:\Users\iagoa\.gradle\caches\transforms-4\0ca7dae909da26727c6ad5323e8a28d3\transformed\emoji2-views-helper-1.3.0\res
+com.example.videojuegoslista.app-startup-runtime-1.1.1-3 C:\Users\iagoa\.gradle\caches\transforms-4\0e01ff7df48581a1854fd92f821da5b0\transformed\startup-runtime-1.1.1\res
+com.example.videojuegoslista.app-transition-1.5.0-4 C:\Users\iagoa\.gradle\caches\transforms-4\0f907398a7cd4e30b216a9f7284d8d8c\transformed\transition-1.5.0\res
+com.example.videojuegoslista.app-appcompat-resources-1.7.0-5 C:\Users\iagoa\.gradle\caches\transforms-4\11d21476d21d56a2e2b1d3b8282e7987\transformed\appcompat-resources-1.7.0\res
+com.example.videojuegoslista.app-core-common-2.0.3-6 C:\Users\iagoa\.gradle\caches\transforms-4\168fe192b51830f9cc0d7a7560b285fe\transformed\core-common-2.0.3\res
+com.example.videojuegoslista.app-viewpager2-1.0.0-7 C:\Users\iagoa\.gradle\caches\transforms-4\2d6e81dcd495d06c293dbc1e6ef9f604\transformed\viewpager2-1.0.0\res
+com.example.videojuegoslista.app-activity-1.9.3-8 C:\Users\iagoa\.gradle\caches\transforms-4\2f4ce5dd22641394241df4c2dd2f5010\transformed\activity-1.9.3\res
+com.example.videojuegoslista.app-recyclerview-1.1.0-9 C:\Users\iagoa\.gradle\caches\transforms-4\2fd4f443af05c3004dcf8d6e31735f7b\transformed\recyclerview-1.1.0\res
+com.example.videojuegoslista.app-material-1.12.0-10 C:\Users\iagoa\.gradle\caches\transforms-4\3a14a9ff7a75a9730395d92319e6d6c7\transformed\material-1.12.0\res
+com.example.videojuegoslista.app-lifecycle-runtime-2.6.2-11 C:\Users\iagoa\.gradle\caches\transforms-4\3a95a06424be66097d2a7025c761e3c8\transformed\lifecycle-runtime-2.6.2\res
+com.example.videojuegoslista.app-profileinstaller-1.4.0-12 C:\Users\iagoa\.gradle\caches\transforms-4\3b32f9bd6d809e39234194c8ea74e8ae\transformed\profileinstaller-1.4.0\res
+com.example.videojuegoslista.app-lifecycle-livedata-core-2.6.2-13 C:\Users\iagoa\.gradle\caches\transforms-4\3d3f4fdb8550feb9c880412d06b06ac0\transformed\lifecycle-livedata-core-2.6.2\res
+com.example.videojuegoslista.app-activity-ktx-1.9.3-14 C:\Users\iagoa\.gradle\caches\transforms-4\4437d521072f68cbd039168a6e4e706c\transformed\activity-ktx-1.9.3\res
+com.example.videojuegoslista.app-ads-adservices-java-1.0.0-beta05-15 C:\Users\iagoa\.gradle\caches\transforms-4\50300d569d9dbe037eb96bd631bc5eea\transformed\ads-adservices-java-1.0.0-beta05\res
+com.example.videojuegoslista.app-drawerlayout-1.1.1-16 C:\Users\iagoa\.gradle\caches\transforms-4\7246de632297de7df2ff2d9613a5ddee\transformed\drawerlayout-1.1.1\res
+com.example.videojuegoslista.app-lifecycle-viewmodel-savedstate-2.6.2-17 C:\Users\iagoa\.gradle\caches\transforms-4\724c5fea81ed1b511823e465b5d04039\transformed\lifecycle-viewmodel-savedstate-2.6.2\res
+com.example.videojuegoslista.app-annotation-experimental-1.4.0-18 C:\Users\iagoa\.gradle\caches\transforms-4\7644f2473616c76f3bb657b6e4b5ffb2\transformed\annotation-experimental-1.4.0\res
+com.example.videojuegoslista.app-lifecycle-viewmodel-2.6.2-19 C:\Users\iagoa\.gradle\caches\transforms-4\7b2f36f105cc6ee14cd8b2cb0f5dcff4\transformed\lifecycle-viewmodel-2.6.2\res
+com.example.videojuegoslista.app-core-runtime-2.2.0-20 C:\Users\iagoa\.gradle\caches\transforms-4\7e235639b70532e0b3640f1e7fd52569\transformed\core-runtime-2.2.0\res
+com.example.videojuegoslista.app-savedstate-1.2.1-21 C:\Users\iagoa\.gradle\caches\transforms-4\87839e70992781d174989e434d67cbef\transformed\savedstate-1.2.1\res
+com.example.videojuegoslista.app-ads-adservices-1.0.0-beta05-22 C:\Users\iagoa\.gradle\caches\transforms-4\88b3fba500195faf4ba3dd1540434825\transformed\ads-adservices-1.0.0-beta05\res
+com.example.videojuegoslista.app-constraintlayout-2.2.0-23 C:\Users\iagoa\.gradle\caches\transforms-4\93164cdd65345e5bfc06d5596f6a1955\transformed\constraintlayout-2.2.0\res
+com.example.videojuegoslista.app-savedstate-ktx-1.2.1-24 C:\Users\iagoa\.gradle\caches\transforms-4\9a8946b5e291fe40801f38b74b2154f2\transformed\savedstate-ktx-1.2.1\res
+com.example.videojuegoslista.app-emoji2-1.3.0-25 C:\Users\iagoa\.gradle\caches\transforms-4\9e7e028080c86fc70025646a9eeda1ee\transformed\emoji2-1.3.0\res
+com.example.videojuegoslista.app-lifecycle-viewmodel-ktx-2.6.2-26 C:\Users\iagoa\.gradle\caches\transforms-4\a908c5f367707a5a0792b94032aa8900\transformed\lifecycle-viewmodel-ktx-2.6.2\res
+com.example.videojuegoslista.app-core-1.13.0-27 C:\Users\iagoa\.gradle\caches\transforms-4\b2b106a59ef20cbfffca4e831c4db49b\transformed\core-1.13.0\res
+com.example.videojuegoslista.app-play-services-basement-18.5.0-28 C:\Users\iagoa\.gradle\caches\transforms-4\b7154e04f01b119fc29bad85018bfb25\transformed\play-services-basement-18.5.0\res
+com.example.videojuegoslista.app-core-ktx-1.13.0-29 C:\Users\iagoa\.gradle\caches\transforms-4\bbba54c3c6f780e2ea997b787e0b4b99\transformed\core-ktx-1.13.0\res
+com.example.videojuegoslista.app-play-services-base-18.5.0-30 C:\Users\iagoa\.gradle\caches\transforms-4\bfd447226fd323b586990f9e4c624eea\transformed\play-services-base-18.5.0\res
+com.example.videojuegoslista.app-appcompat-1.7.0-31 C:\Users\iagoa\.gradle\caches\transforms-4\c2dd7eed3d0af93d078f479515dc41e9\transformed\appcompat-1.7.0\res
+com.example.videojuegoslista.app-credentials-play-services-auth-1.2.0-rc01-32 C:\Users\iagoa\.gradle\caches\transforms-4\c5153d8f94200241392eaac509477302\transformed\credentials-play-services-auth-1.2.0-rc01\res
+com.example.videojuegoslista.app-browser-1.4.0-33 C:\Users\iagoa\.gradle\caches\transforms-4\d4c06df01eadcc065b0222f4ececd3f3\transformed\browser-1.4.0\res
+com.example.videojuegoslista.app-play-services-auth-20.7.0-34 C:\Users\iagoa\.gradle\caches\transforms-4\d9ef1f6aaaddd7d8c0eb3fcb2846ba13\transformed\play-services-auth-20.7.0\res
+com.example.videojuegoslista.app-credentials-1.2.0-rc01-35 C:\Users\iagoa\.gradle\caches\transforms-4\da005ce6730a72e573688beb61e5f495\transformed\credentials-1.2.0-rc01\res
+com.example.videojuegoslista.app-firebase-common-21.0.0-36 C:\Users\iagoa\.gradle\caches\transforms-4\e13d4b3b43ad678de70f21e5e0a03d65\transformed\firebase-common-21.0.0\res
+com.example.videojuegoslista.app-fragment-1.5.4-37 C:\Users\iagoa\.gradle\caches\transforms-4\e43b2a5ec84821ac0f135fbe60fe1a1b\transformed\fragment-1.5.4\res
+com.example.videojuegoslista.app-cardview-1.0.0-38 C:\Users\iagoa\.gradle\caches\transforms-4\faad76afb5cbdfe26254b8469e764c43\transformed\cardview-1.0.0\res
+com.example.videojuegoslista.app-coordinatorlayout-1.1.0-39 C:\Users\iagoa\.gradle\caches\transforms-4\fb6fc928a8d616ce3a6277c6955ff3cf\transformed\coordinatorlayout-1.1.0\res
+com.example.videojuegoslista.app-lifecycle-livedata-2.6.2-40 C:\Users\iagoa\.gradle\caches\transforms-4\fcc841d0ec84df74160a9ad590f31c92\transformed\lifecycle-livedata-2.6.2\res
+com.example.videojuegoslista.app-pngs-41 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\generated\res\pngs\debug
+com.example.videojuegoslista.app-res-42 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\generated\res\processDebugGoogleServices
+com.example.videojuegoslista.app-resValues-43 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\generated\res\resValues\debug
+com.example.videojuegoslista.app-packageDebugResources-44 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.videojuegoslista.app-packageDebugResources-45 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.videojuegoslista.app-debug-46 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.videojuegoslista.app-debug-47 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\src\debug\res
+com.example.videojuegoslista.app-main-48 C:\Users\iagoa\Desktop\trabajointerfaces2aeval mal\app\src\main\res

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.example.videojuegoslista.app-mergeDebugResources-45:/layout/activity_main.xml",
+        "source": "com.example.videojuegoslista.app-main-48:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.videojuegoslista.app-mergeDebugResources-45:/layout/activity_dashboard.xml",
+        "source": "com.example.videojuegoslista.app-main-48:/layout/activity_dashboard.xml"
+    },
+    {
+        "merged": "com.example.videojuegoslista.app-mergeDebugResources-45:/layout/activity_register.xml",
+        "source": "com.example.videojuegoslista.app-main-48:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.example.videojuegoslista.app-mergeDebugResources-45:/layout/activity_login.xml",
+        "source": "com.example.videojuegoslista.app-main-48:/layout/activity_login.xml"
+    }
+]
