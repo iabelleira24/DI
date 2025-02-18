@@ -18,7 +18,7 @@ public class LoginViewModel extends ViewModel {
     public LiveData<Boolean> isLoading = _isLoading;
 
     // LiveData para errores
-    private final MutableLiveData<String> _errorMessage = new MutableLiveData<>();
+    private final MutableLiveData<String> _errorMessage = new MutableLiveData<>(null);
     public LiveData<String> errorMessage = _errorMessage;
 
     /**
@@ -27,6 +27,7 @@ public class LoginViewModel extends ViewModel {
      */
     public void loginUser(String email, String password) {
         _isLoading.setValue(true);
+        _errorMessage.setValue(null);  // Limpia el mensaje de error previo si hay alguno
 
         userRepository.loginUser(email, password, new UserRepository.LoginCallback() {
             @Override

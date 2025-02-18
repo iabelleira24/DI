@@ -53,4 +53,16 @@
         android:importantForAccessibility="yes"
         android:contentDescription="Descripción del videojuego" />
 
+    <!-- Botón de favorito (corazón) -->
+    <ImageView
+        android:id="@+id/favButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/corazon_vacio"
+    android:contentDescription="Agregar a favoritos"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/gameImage"
+    android:importantForAccessibility="yes" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

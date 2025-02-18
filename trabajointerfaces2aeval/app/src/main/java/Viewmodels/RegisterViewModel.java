@@ -32,6 +32,18 @@ public class RegisterViewModel extends ViewModel {
      * @param address Dirección del usuario.
      */
     public void registerUser(String email, String password, String fullName, String phone, String address) {
+        if (Boolean.TRUE.equals(_isLoading.getValue())) return; // Evita llamadas duplicadas
+
+        // Validaciones previas
+        if (!isValidEmail(email)) {
+            _errorMessage.setValue("Correo electrónico inválido.");
+            return;
+        }
+        if (!isValidPassword(password)) {
+            _errorMessage.setValue("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
         _isLoading.setValue(true); // Iniciar la carga
 
         // Llamada al repositorio para registrar al usuario
@@ -48,5 +60,26 @@ public class RegisterViewModel extends ViewModel {
                 _isLoading.setValue(false); // Finalizar carga
             }
         });
+    }
+
+    /**
+     * Valida si un correo es válido.
+     */
+    private boolean isValidEmail(String email) {
+        return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    /**
+     * Valida si una contraseña es válida.
+     */
+    private boolean isValidPassword(String password) {
+        return password != null && password.length() >= 6;
+    }
+
+    /**
+     * Método para limpiar mensajes de error después de mostrarlos.
+     */
+    public void clearErrorMessage() {
+        _errorMessage.setValue(null);
     }
 }

@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         // Verificar si el usuario ya está autenticado
         if (mAuth.getCurrentUser() != null) {
             redirectToDashboard();
+            finish();
         }
 
         // Vincular elementos del layout
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void redirectToDashboard() {
         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish(); // Finalizar LoginActivity para evitar regresar al presionar "atrás"
     }

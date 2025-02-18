@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?android:attr/windowBackground">
 
     <!-- Imagen del juego -->
     <ImageView
@@ -16,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/game_image" />
+        android:contentDescription="Imagen de portada del juego" /> <!-- Mejor descripción para accesibilidad -->
 
     <!-- Título del juego -->
     <TextView
@@ -26,7 +27,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:text="Título del juego"
-        android:textColor="@android:color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_marginBottom="8dp"
         app:layout_constraintTop_toBottomOf="@id/gameImage"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="Descripción del juego"
-        android:textColor="@android:color/black"
+        android:textColor="?android:attr/textColorSecondary"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toBottomOf="@id/gameTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,9 +52,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Volver"
-        app:layout_constraintTop_toBottomOf="@id/gameDescription"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:contentDescription="Botón para volver a la pantalla anterior"
+        android:onClick="onBackPressed"
+    app:layout_constraintTop_toBottomOf="@id/gameDescription"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginBottom="16dp"/>
 
+    <!-- Icono de corazón vacío (FloatingActionButton) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/corazon_vacio"
+        android:contentDescription="Agregar o eliminar este juego de favoritos"
+        app:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

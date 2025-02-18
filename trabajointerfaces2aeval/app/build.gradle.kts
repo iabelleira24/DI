@@ -52,11 +52,15 @@ dependencies {
     // Picasso para cargar imágenes
     implementation("com.squareup.picasso:picasso:2.71828")
 
+
     // Bibliotecas de Android
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.activity:activity-ktx:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation(libs.firebase.firestore)
+
 
     // Dependencias para pruebas
     testImplementation("junit:junit:4.13.2")
@@ -72,4 +76,3 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.inappmessaging)
 }
-

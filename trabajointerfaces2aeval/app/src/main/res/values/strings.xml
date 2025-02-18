@@ -6,6 +6,10 @@
     <string name="logo_image_description">Descripción del logo</string>
     <string name="welcome_text">Bienvenido a la aplicación</string>
     <string name="example_button_text">Ejemplo de botón</string>
+    <string name="no_games_found">No se encontraron juegos.</string>
+    <string name="logout_success">Has cerrado sesión exitosamente.</string>
+    <string name="game_click_message">Has seleccionado el juego: %1$s</string>
+
 
 
 </resources>

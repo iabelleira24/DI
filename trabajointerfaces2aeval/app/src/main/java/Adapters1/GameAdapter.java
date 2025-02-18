@@ -1,5 +1,7 @@
 package Adapters1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,34 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.videojuegoslista.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
+
+import Models.Game;
+import Views.DetailActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import Models.Game;
-import android.content.Intent;
-import Views.DetailActivity;  // Asegúrate de importar la clase DetailActivity
-
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
-    private List<Game> games;  // Lista de objetos Game
+    private List<Game> games;
+    private final Context context;
     private final OnGameClickListener listener;
 
-    // Interfaz para la acción de click sobre un juego
     public interface OnGameClickListener {
         void onGameClick(Game game);
     }
 
-    // Constructor del adaptador
-    public GameAdapter(List<Game> games, OnGameClickListener listener) {
-        this.games = games;
+    public GameAdapter(Context context, OnGameClickListener listener) {
+        this.context = context;
         this.listener = listener;
     }
 
-    // Establecer los juegos (para actualizar la lista)
     public void setGames(List<Game> games) {
-        this.games = games;
-        notifyDataSetChanged();
+        if (games != null) {
+            this.games = games;
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
@@ -49,27 +54,57 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
+        if (games == null || games.isEmpty()) return;
         Game game = games.get(position);
 
-        // Establecer el título del juego
         holder.title.setText(game.getTitle());
+        holder.description.setText(game.getDescription());
 
-        // Usar Picasso para cargar la imagen del juego
-        Picasso.get()
-                .load(game.getImage())  // URL de la imagen del juego
-                .placeholder(R.drawable.placeholder_image)  // Imagen por defecto mientras carga
-                .error(R.drawable.error_image)  // Imagen de error si falla la carga
-                .into(holder.image);
+        // Cargar imagen con Picasso
+        if (game.getImage() != null && !game.getImage().isEmpty()) {
+            Picasso.get().load(game.getImage()).into(holder.image);
+        } else {
+            holder.image.setImageResource(R.drawable.placeholder_image);
+        }
 
-        // Establecer la descripción del juego
-        holder.description.setText(game.getDescription());  // Aquí agregamos la descripción del juego
+        holder.image.setContentDescription(game.getTitle() != null ? game.getTitle() : "Imagen del juego");
 
-        // Configurar el listener para el click sobre el item
+        // Configurar favoritos
+        holder.favButton.setImageResource(game.isFavorite() ? R.drawable.corazon_lleno : R.drawable.corazon_vacio);
+        holder.favButton.setOnClickListener(v -> {
+            // Cambiar el estado localmente
+            game.setFavorite(!game.isFavorite());
+
+            // Obtener el userId del usuario actual
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            // Referencia al nodo de favoritos del usuario
+            DatabaseReference userFavRef = FirebaseDatabase.getInstance()
+                    .getReference("usuarios")
+                    .child(userId)
+                    .child("favoritos")
+                    .child(game.getId());
+
+            if (game.isFavorite()) {
+                // Agregar a favoritos
+                userFavRef.setValue(true);
+            } else {
+                // Eliminar de favoritos
+                userFavRef.removeValue();
+            }
+
+            // Actualizar el icono del botón
+            holder.favButton.setImageResource(game.isFavorite() ? R.drawable.corazon_lleno : R.drawable.corazon_vacio);
+        });
+
+
+        // Manejar el clic del juego
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), DetailActivity.class);
-            // Pasamos el objeto `Game` como un extra en el intent
-            intent.putExtra("GAME", game);
-            v.getContext().startActivity(intent);
+            if (listener != null) {
+                listener.onGameClick(game);
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("GAME", game); // Pasar el objeto Game
+                context.startActivity(intent);
+            }
         });
     }
 
@@ -82,12 +117,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         private final TextView title;
         private final ImageView image;
         private final TextView description;
+        private final ImageView favButton;
 
         public GameViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.gameTitle);
             image = itemView.findViewById(R.id.gameImage);
             description = itemView.findViewById(R.id.gameDescription);
+            favButton = itemView.findViewById(R.id.favButton);
         }
     }
 }

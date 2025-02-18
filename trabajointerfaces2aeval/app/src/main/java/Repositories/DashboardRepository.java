@@ -1,23 +1,34 @@
 package Repositories;
 
 import android.util.Log;
+import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import Models.Game;
 
 public class DashboardRepository {
 
     private final DatabaseReference gamesRef;
+    private final DatabaseReference usersRef;
+    private final FirebaseUser currentUser;
 
-    // Constructor para facilitar la inyección de dependencias o pruebas unitarias
     public DashboardRepository() {
-        this.gamesRef = FirebaseDatabase.getInstance().getReference("games");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        this.gamesRef = database.getReference("games");
+        this.usersRef = database.getReference("users");
+        this.currentUser = FirebaseAuth.getInstance().getCurrentUser();  // Obtener usuario autenticado
     }
 
     /**
@@ -29,30 +40,65 @@ public class DashboardRepository {
     }
 
     /**
-     * Obtiene la lista de juegos desde Firebase y usa el callback para devolver los resultados.
+     * Obtiene la lista de juegos desde Firebase y marca los favoritos según el usuario actual.
      *
      * @param callback Interfaz para manejar éxito o fallo en la obtención de datos.
      */
     public void fetchGames(GamesCallback callback) {
-        gamesRef.get().addOnSuccessListener(snapshot -> {
-            List<Game> games = new ArrayList<>();
+        if (currentUser == null) {
+            callback.onFailure("Usuario no autenticado.");
+            return;
+        }
 
-            if (snapshot.exists()) {
-                for (DataSnapshot gameSnapshot : snapshot.getChildren()) {
-                    Game game = gameSnapshot.getValue(Game.class);
-                    if (game != null) {
-                        // Eliminamos el setId, ya que no lo necesitamos.
-                        games.add(game);
+        // Consultamos ambos nodos en paralelo
+        Task<DataSnapshot> gamesTask = gamesRef.get();
+        Task<DataSnapshot> favTask = usersRef.child(currentUser.getUid()).child("favoritos").get();
+
+        // Usamos Task.whenAll() para esperar a que ambas tareas terminen
+        Tasks.whenAll(gamesTask, favTask).addOnCompleteListener(task -> {
+            if (gamesTask.isSuccessful() && favTask.isSuccessful()) {
+                DataSnapshot gamesSnapshot = gamesTask.getResult();
+                DataSnapshot favSnapshot = favTask.getResult();
+
+                List<Game> games = new ArrayList<>();
+                Set<String> favoritos = new HashSet<>();
+
+                // Procesamos los favoritos
+                if (favSnapshot.exists()) {
+                    for (DataSnapshot fav : favSnapshot.getChildren()) {
+                        String favId = fav.getValue(String.class);
+                        if (favId != null) {
+                            favoritos.add(favId);
+                        }
                     }
                 }
-                callback.onSuccess(games);  // Devuelve la lista de juegos al ViewModel
-            } else {
-                callback.onFailure("No se encontraron juegos disponibles.");
-            }
 
-        }).addOnFailureListener(e -> {
-            Log.e("DashboardRepository", "Error al obtener los juegos: " + e.getMessage(), e);
-            callback.onFailure(e.getMessage() != null ? e.getMessage() : "Error al obtener los juegos. Por favor intente nuevamente.");
+                // Procesamos la lista de juegos
+                if (gamesSnapshot.exists()) {
+                    for (DataSnapshot gameSnapshot : gamesSnapshot.getChildren()) {
+                        Game game = gameSnapshot.getValue(Game.class);
+                        String gameId = gameSnapshot.getKey();
+
+                        if (game != null && gameId != null) {
+                            game.setId(gameId);
+                            game.setFavorite(favoritos.contains(gameId)); // Marcar si es favorito
+                            games.add(game);
+                        }
+                    }
+                }
+
+                callback.onSuccess(games);
+            } else {
+                // Manejar errores de cualquier tarea
+                String errorMsg = "Error al obtener datos: ";
+                if (!gamesTask.isSuccessful()) {
+                    errorMsg += gamesTask.getException() != null ? gamesTask.getException().getMessage() : "Desconocido";
+                }
+                if (!favTask.isSuccessful()) {
+                    errorMsg += favTask.getException() != null ? favTask.getException().getMessage() : "Desconocido";
+                }
+                callback.onFailure(errorMsg);
+            }
         });
     }
 }
