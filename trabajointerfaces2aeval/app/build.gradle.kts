@@ -53,6 +53,9 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
 
 
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
     // Bibliotecas de Android
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -75,4 +78,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.inappmessaging)
+
+
+
+
 }
