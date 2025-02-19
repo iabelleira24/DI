@@ -6,7 +6,7 @@
     <string name="remove_from_favorites">Quitar de favoritos</string>
     <string name="toggle_theme">Cambiar tema</string>
     <string name="back">Regresar</string>
-    <string name="favorites">Mis Favoritos</string>
+
     <string name="no_favorites">No tienes favoritos</string>
 
     <!-- Descripción de la imagen -->
@@ -17,8 +17,7 @@
     <string name="toolbar_description">Barra de navegación</string>
     <string name="theme_button_light">Cambiar a tema oscuro</string>
     <string name="theme_button_dark">Cambiar a tema claro</string>
-    <string name="favorites_button">Ver favoritos</string>
-    <string name="logout_button">Cerrar sesión</string>
+
 
     <!-- Mensajes -->
     <string name="loading_movies">Cargando...</string>
@@ -27,7 +26,14 @@
     <string name="movies_loaded">Se han cargado </string>
 
     <!-- Títulos -->
-    <string name="title_movie_details">Detalles</string>
-    <string name="title_favorites">Mis favoritos</string>
-    <string name="title_dashboard">Juegos</string>
+    <string name="title_dashboard">Jueguitos</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_logout">Cerrar sesión</string>
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+
+
+
+
 </resources>

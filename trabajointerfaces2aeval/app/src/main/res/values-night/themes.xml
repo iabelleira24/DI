@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.VideojuegosLista." parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Fighther" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary_dark</item>
         <item name="colorPrimaryVariant">@color/primary_variant_dark</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -9,5 +9,8 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:textColor">@color/text_primary_dark</item>
+    </style>
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 </resources>
