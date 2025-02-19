@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -20,7 +21,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    android:contentDescription="@string/imagen_item"/>
+                    android:contentDescription="@string/imagen_item" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -34,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        tools:text="Título del Item"/>
+                        tools:text="Título del Item" />
 
                     <TextView
                         android:id="@+id/tvDescripcionDetalle"
@@ -42,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:textSize="16sp"
-                        tools:text="Descripción detallada del item"/>
+                        tools:text="Descripción detallada del item" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -53,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"
-            app:srcCompat="@drawable/ic_favorite_border"/>
+            app:srcCompat="@drawable/ic_favorite_border" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

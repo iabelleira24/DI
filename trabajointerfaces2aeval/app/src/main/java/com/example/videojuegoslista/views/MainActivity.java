@@ -1,100 +1,87 @@
 package com.example.videojuegoslista.views;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.videojuegoslista.R;
-import com.example.videojuegoslista.databinding.ActivityMainBinding;
-import com.example.videojuegoslista.viewmodels.LoginViewModel;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-    private LoginViewModel loginViewModel;
-    private ProgressDialog progressDialog;
 
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Aplicar el tema guardado al inicio
-        applySavedTheme();
-
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        inicializarViews();
-        configurarViewModel();
-        configurarObservadores();
-        configurarListeners();
-    }
+        // Configurar Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    private void inicializarViews() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Iniciando sesión...");
-        progressDialog.setCancelable(false);
-    }
+        // Inicializar DrawerLayout y NavigationView
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigationView);
 
-    private void configurarViewModel() {
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-    }
+        // Configurar ActionBarDrawerToggle para mostrar el icono de hamburguesa
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-    private void configurarObservadores() {
-        loginViewModel.getLoginResult().observe(this, usuarioFirebase -> {
-            progressDialog.dismiss();
-            if (usuarioFirebase != null) {
-                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+        // Cargar fragmento inicial (solo si no se ha guardado el estado previamente)
+        if (savedInstanceState == null) {
+            // Cargar DashboardFragment y configurar el título
+            switchFragment(new DashboardFragment(), getString(R.string.title_dashboard));
+            navigationView.setCheckedItem(R.id.nav_dashboard);
+        }
+
+        // Manejar clics en el menú de navegación
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_dashboard) {
+                switchFragment(new DashboardFragment(), getString(R.string.title_dashboard));
+            } else if (itemId == R.id.nav_favourites) {
+                switchFragment(new FavoritesFragment(), getString(R.string.title_favorites));
+            } else if (itemId == R.id.nav_profile) {
+                switchFragment(new ProfileFragment(), getString(R.string.title_profile));
+            } else if (itemId == R.id.nav_logout) {
                 finish();
+                return true;
             }
-        });
-
-        loginViewModel.getLoginError().observe(this, error -> {
-            progressDialog.dismiss();
-            if (error != null) {
-                Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        loginViewModel.getIsLoading().observe(this, isLoading -> {
-            if (isLoading != null && isLoading) {
-                progressDialog.show();
-            } else {
-                progressDialog.dismiss();
-            }
+            drawerLayout.closeDrawers();
+            return true;
         });
     }
 
-    private void configurarListeners() {
-        binding.btnIngresarL.setOnClickListener(v -> intentarLogin());
+    // Método para cambiar de fragmento y actualizar el título
+    private void switchFragment(Fragment fragment, String title) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
 
-        binding.lblRegistrar.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
+        // Actualiza el título de la Toolbar (header) al nombre del fragmento
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title); // Actualiza el título con el valor adecuado
+        }
     }
 
-    private void intentarLogin() {
-        String correo = binding.etCorreoL.getText().toString().trim();
-        String contrasena = binding.etContrasenaL.getText().toString().trim();
-        loginViewModel.login(correo, contrasena);
-    }
 
-    private void applySavedTheme() {
-        SharedPreferences sharedPref = getSharedPreferences("AppConfig", MODE_PRIVATE);
-        boolean darkMode = sharedPref.getBoolean("darkMode", false);
-
-        AppCompatDelegate.setDefaultNightMode(darkMode ?
-                AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-    }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(navigationView)) {
+            drawerLayout.closeDrawers();
+        } else {
+            super.onBackPressed();
         }
     }
 }

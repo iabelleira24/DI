@@ -1,17 +1,21 @@
 package com.example.videojuegoslista.views;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.videojuegoslista.R;
 import com.example.videojuegoslista.adapters.ItemAdapter;
-import com.example.videojuegoslista.databinding.ActivityFavoritesBinding;
+import com.example.videojuegoslista.databinding.FragmentFavoritesBinding;
 import com.example.videojuegoslista.models.Item;
 import com.example.videojuegoslista.repositories.FavoritesRepository;
 import com.google.firebase.database.DataSnapshot;
@@ -22,38 +26,64 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesActivity extends AppCompatActivity {
-    private ActivityFavoritesBinding binding;
+public class FavoritesFragment extends Fragment {
+    private FragmentFavoritesBinding binding;
     private ItemAdapter adapter;
     private FavoritesRepository favoritesRepository;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_favorites);
+    public FavoritesFragment() {
+        // Constructor público vacío requerido
+    }
 
-        // Ya no necesitamos setupToolbar() porque lo manejaremos directamente aquí
-        setSupportActionBar(binding.toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflamos el layout sin la Toolbar
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Configuramos la Toolbar de la misma forma que en DashboardFragment
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        activity.setSupportActionBar(binding.toolbar);
+
+        if (activity.getSupportActionBar() != null) {
+            // Eliminamos la flecha de retroceso
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);  // No muestra el ícono de retroceso
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+            // Establecemos el título de la Toolbar
+            activity.getSupportActionBar().setTitle("Mis Favoritos");
         }
 
+        // Elimina la acción del botón de retroceso
+        binding.toolbar.setNavigationOnClickListener(null); // No hace nada cuando se hace clic en el ícono de retroceso
+
+        // Configura el RecyclerView
         setupRecyclerView();
         loadFavorites();
     }
 
     private void setupRecyclerView() {
         adapter = new ItemAdapter(new ArrayList<>(), item -> {
-            Intent intent = new Intent(this, DetailActivity.class);
-            intent.putExtra("id", item.getId());
-            intent.putExtra("titulo", item.getTitulo());
-            intent.putExtra("descripcion", item.getDescripcion());
-            intent.putExtra("url", item.getUrl());
-            startActivity(intent);
+            // Realiza una transacción para mostrar el DetailFragment sin Toolbar
+            DetailFragment detailFragment = DetailFragment.newInstance(
+                    item.getId(),
+                    item.getTitulo(),
+                    item.getDescripcion(),
+                    item.getUrl()
+            );
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, detailFragment)
+                    .addToBackStack(null) // Permite volver al listado al pulsar "Atrás"
+                    .commit();
         });
 
-        binding.rvFavorites.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvFavorites.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvFavorites.setAdapter(adapter);
     }
 
@@ -83,7 +113,7 @@ public class FavoritesActivity extends AppCompatActivity {
                                         }
                                     })
                                     .addOnFailureListener(e -> {
-                                        Toast.makeText(FavoritesActivity.this,
+                                        Toast.makeText(requireContext(),
                                                 "Error al cargar juego: " + e.getMessage(),
                                                 Toast.LENGTH_SHORT).show();
                                     });
@@ -96,16 +126,10 @@ public class FavoritesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(FavoritesActivity.this,
+                Toast.makeText(requireContext(),
                         "Error al cargar favoritos: " + error.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
     }
 }

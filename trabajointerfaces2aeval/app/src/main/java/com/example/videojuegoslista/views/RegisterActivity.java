@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         viewModel.obtenerResultadoRegistro().observe(this, resultado -> {
             if ("SUCCESS".equals(resultado)) {
                 Toast.makeText(this, "Usuario creado con éxito", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this, DashboardActivity.class));
+                startActivity(new Intent(RegisterActivity.this, DashboardFragment.class));
                 finish();
             }
         });
@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnRgistrar.setOnClickListener(v -> registrarUsuario());
 
         binding.lblLoginR.setOnClickListener(v ->
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class)));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class)));
     }
 
     private void registrarUsuario() {
