@@ -27,44 +27,44 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Infla el layout del fragmento
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // Configuración de la Toolbar
+
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
-        activity.setSupportActionBar(view.findViewById(R.id.toolbar));  // Configura la Toolbar en el fragmento
+        activity.setSupportActionBar(view.findViewById(R.id.toolbar));
 
         if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Habilita el botón de retroceso
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
-            activity.getSupportActionBar().setTitle("Perfil");  // Establece el título
+            activity.getSupportActionBar().setTitle("Perfil");
         }
 
-        // Inicialización de los componentes
+
         currentPasswordEditText = view.findViewById(R.id.currentPasswordEditText);
         newPasswordEditText = view.findViewById(R.id.newPasswordEditText);
         darkModeSwitch = view.findViewById(R.id.darkModeSwitch);
 
-        // Recupera la preferencia de modo oscuro
+
         SharedPreferences prefs = requireActivity().getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         darkModeSwitch.setChecked(prefs.getBoolean("darkMode", false));
 
-        // Acción para cambiar el modo oscuro
+
         darkModeSwitch.setOnCheckedChangeListener((compoundButton, checked) -> toggleDarkMode(checked));
 
-        // Acción para cambiar la contraseña
+
         view.findViewById(R.id.changePasswordButton).setOnClickListener(v -> changePassword());
 
         return view;
     }
 
-    // Método para cambiar la contraseña
+
     private void changePassword() {
-        // Obtener las contraseñas ingresadas por el usuario
+
         String currentPass = currentPasswordEditText.getText().toString().trim();
         String newPass = newPasswordEditText.getText().toString().trim();
 
-        // Verificar que ambos campos no estén vacíos
+
         if (currentPass.isEmpty() || newPass.isEmpty()) {
             Toast.makeText(getContext(), "Por favor, ingresa la contraseña actual y la nueva", Toast.LENGTH_SHORT).show();
             return;
@@ -99,11 +99,11 @@ public class ProfileFragment extends Fragment {
                 });
     }
 
-    // Método para habilitar o deshabilitar el modo oscuro
+
     private void toggleDarkMode(boolean enableDarkMode) {
         SharedPreferences prefs = requireActivity().getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         prefs.edit().putBoolean("darkMode", enableDarkMode).apply();
         AppCompatDelegate.setDefaultNightMode(enableDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-        requireActivity().recreate();  // Recrea la actividad para aplicar los cambios
+        requireActivity().recreate();
     }
 }

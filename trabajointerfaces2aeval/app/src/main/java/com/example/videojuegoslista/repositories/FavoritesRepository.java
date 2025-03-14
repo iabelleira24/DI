@@ -9,7 +9,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FavoritesRepository {
     private final DatabaseReference favoritesRef;
-    private final DatabaseReference itemsRef; // Cambiado de itemsRef
+    private final DatabaseReference itemsRef;
     private final FirebaseAuth auth;
 
     public FavoritesRepository() {
@@ -69,5 +69,18 @@ public class FavoritesRepository {
                         listener.onSuccess(snapshot.exists());
                     }
                 });
+    }
+
+
+    public void clearFavorites(OnCompleteListener<Void> listener) {
+        if (auth.getCurrentUser() == null) {
+            return;
+        }
+
+        String userId = auth.getCurrentUser().getUid();
+        favoritesRef.child(userId)
+                .child("favoritos")
+                .removeValue()
+                .addOnCompleteListener(listener);
     }
 }

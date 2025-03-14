@@ -32,13 +32,13 @@ public class FavoritesFragment extends Fragment {
     private FavoritesRepository favoritesRepository;
 
     public FavoritesFragment() {
-        // Constructor público vacío requerido
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflamos el layout sin la Toolbar
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
         return binding.getRoot();
     }
@@ -47,30 +47,30 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Configuramos la Toolbar de la misma forma que en DashboardFragment
+
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
         activity.setSupportActionBar(binding.toolbar);
 
         if (activity.getSupportActionBar() != null) {
-            // Eliminamos la flecha de retroceso
-            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);  // No muestra el ícono de retroceso
+
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-            // Establecemos el título de la Toolbar
+
             activity.getSupportActionBar().setTitle("Mis Favoritos");
         }
 
-        // Elimina la acción del botón de retroceso
-        binding.toolbar.setNavigationOnClickListener(null); // No hace nada cuando se hace clic en el ícono de retroceso
 
-        // Configura el RecyclerView
+        binding.toolbar.setNavigationOnClickListener(null);
+
+
         setupRecyclerView();
         loadFavorites();
     }
 
     private void setupRecyclerView() {
         adapter = new ItemAdapter(new ArrayList<>(), item -> {
-            // Realiza una transacción para mostrar el DetailFragment sin Toolbar
+
             DetailFragment detailFragment = DetailFragment.newInstance(
                     item.getId(),
                     item.getTitulo(),
@@ -79,7 +79,7 @@ public class FavoritesFragment extends Fragment {
             );
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, detailFragment)
-                    .addToBackStack(null) // Permite volver al listado al pulsar "Atrás"
+                    .addToBackStack(null)
                     .commit();
         });
 

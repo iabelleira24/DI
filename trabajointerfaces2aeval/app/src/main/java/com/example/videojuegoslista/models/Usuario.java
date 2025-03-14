@@ -10,11 +10,11 @@ public class Usuario {
     private String correo;
     private String contrasena;
 
-    // Constructor vacío (necesario para Firebase)
+
     public Usuario() {
     }
 
-    // Constructor con todos los campos
+
     public Usuario(String uid, String nombre, String apellido, String correo, String contrasena) {
         this.uid = uid;
         this.nombre = nombre;
@@ -23,13 +23,13 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    // Constructor para login (solo correo y contraseña)
+
     public Usuario(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
     }
 
-    // Getters y Setters
+
     public String getUid() {
         return uid;
     }
@@ -70,7 +70,7 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    // Método toMap para Firebase
+
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
