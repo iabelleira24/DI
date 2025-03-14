@@ -16,8 +16,6 @@ public class DashboardRepository {
     public DashboardRepository() {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("games");
-
-
         if (firebaseAuth.getCurrentUser() != null) {
             favoritesReference = FirebaseDatabase.getInstance().getReference()
                     .child("usuarios")
@@ -47,6 +45,13 @@ public class DashboardRepository {
     public void getFavorites(ValueEventListener listener) {
         if (firebaseAuth.getCurrentUser() != null) {
             favoritesReference.addListenerForSingleValueEvent(listener);
+        }
+    }
+
+
+    public void clearFavorites() {
+        if (firebaseAuth.getCurrentUser() != null) {
+            favoritesReference.removeValue(); // Borra todos los favoritos
         }
     }
 }

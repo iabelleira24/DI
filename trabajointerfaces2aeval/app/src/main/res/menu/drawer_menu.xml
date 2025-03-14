@@ -16,6 +16,12 @@
         android:title="@string/title_profile" />
 
 
+
+    <item
+        android:id="@+id/nav_clear_favourites"
+        android:icon="@drawable/ic_favorite_border"
+        android:title="Limpiar Favoritos" />
+
     <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_logout"

@@ -9,7 +9,9 @@
     <string name="back">Regresar</string>
 
     <string name="no_favorites">No tienes favoritos</string>
-
+    <string name="clear_favorites">Limpiar Favoritos</string>
+    <string name="favorites_cleared_success">Favoritos eliminados correctamente</string>
+    <string name="favorites_cleared_error">Error al eliminar favoritos</string>
 
     <!-- Descripción de la imagen -->
     <string name="poster_description">Poster de %1$s</string>

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.videojuegoslista.R;
+import com.example.videojuegoslista.repositories.FavoritesRepository;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
                 switchFragment(new FavoritesFragment(), getString(R.string.title_favorites));
             } else if (itemId == R.id.nav_profile) {
                 switchFragment(new ProfileFragment(), getString(R.string.title_profile));
+            } else if (itemId == R.id.nav_clear_favourites) {
+
+                new FavoritesRepository().clearFavorites(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "Favoritos eliminados", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Error al eliminar favoritos", Toast.LENGTH_SHORT).show();
+                    }
+                });
             } else if (itemId == R.id.nav_logout) {
                 finish();
                 return true;

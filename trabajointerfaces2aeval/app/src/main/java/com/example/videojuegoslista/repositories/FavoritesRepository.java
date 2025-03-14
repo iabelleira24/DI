@@ -9,7 +9,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FavoritesRepository {
     private final DatabaseReference favoritesRef;
-    private final DatabaseReference itemsRef;
+    private final DatabaseReference itemsRef; // Cambiado de itemsRef
     private final FirebaseAuth auth;
 
     public FavoritesRepository() {

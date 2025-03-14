@@ -93,4 +93,10 @@ public class DashboardViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void limpiarFavoritos() {
+        dashboardRepository.clearFavorites();
+        cargarItems();
+    }
 }
