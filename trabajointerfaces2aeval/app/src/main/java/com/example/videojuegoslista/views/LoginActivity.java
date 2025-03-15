@@ -1,6 +1,7 @@
 package com.example.videojuegoslista.views;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.videojuegoslista.R;
 import com.example.videojuegoslista.databinding.ActivityLoginBinding;
 import com.example.videojuegoslista.viewmodels.LoginViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -48,6 +50,14 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getLoginResult().observe(this, usuarioFirebase -> {
             progressDialog.dismiss();
             if (usuarioFirebase != null) {
+                // Obtiene una instancia de SharedPreferences
+                SharedPreferences sharedPref = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+                // Obtiene el editor para modificar las preferencias compartidas
+                SharedPreferences.Editor editor = sharedPref.edit();
+                // Guarda el usuario, usando el UID del usuario actualmente autenticado en Firebase
+                editor.putString("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                // Aplica los cambios
+                editor.apply();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }

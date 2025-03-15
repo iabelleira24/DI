@@ -1,5 +1,8 @@
 package com.example.videojuegoslista.views;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -65,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             } else if (itemId == R.id.nav_logout) {
-                finish();
+                SharedPreferences sharedPref = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+                sharedPref.edit().remove("userId").apply();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 return true;
             }
 

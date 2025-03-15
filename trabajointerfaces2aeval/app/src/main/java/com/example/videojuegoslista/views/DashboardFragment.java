@@ -72,6 +72,7 @@ public class DashboardFragment extends Fragment implements ItemAdapter.OnItemCli
 
         dashboardViewModel.getNavigateToLogin().observe(getViewLifecycleOwner(), shouldNavigate -> {
             if (shouldNavigate) {
+
                 startActivity(new Intent(requireContext(), LoginActivity.class));
                 requireActivity().finish();
             }
