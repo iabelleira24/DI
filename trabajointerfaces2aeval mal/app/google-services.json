@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "497870333085",
+    "firebase_url": "https://videojuegoscatalogo-default-rtdb.firebaseio.com",
+    "project_id": "videojuegoscatalogo",
+    "storage_bucket": "videojuegoscatalogo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497870333085:android:54c4078ce137b0b0126074",
+        "android_client_info": {
+          "package_name": "com.example.videojuegoslista"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPbdNfmvMSEqi4dwHE85Cyzd4ESaKW1FM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
