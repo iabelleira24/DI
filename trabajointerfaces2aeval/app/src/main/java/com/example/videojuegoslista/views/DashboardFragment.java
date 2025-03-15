@@ -34,7 +34,6 @@ public class DashboardFragment extends Fragment implements ItemAdapter.OnItemCli
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Aplica el tema guardado antes de inflar la vista
         applySavedTheme();
     }
 
@@ -73,6 +72,7 @@ public class DashboardFragment extends Fragment implements ItemAdapter.OnItemCli
 
         dashboardViewModel.getNavigateToLogin().observe(getViewLifecycleOwner(), shouldNavigate -> {
             if (shouldNavigate) {
+
                 startActivity(new Intent(requireContext(), LoginActivity.class));
                 requireActivity().finish();
             }
@@ -88,10 +88,8 @@ public class DashboardFragment extends Fragment implements ItemAdapter.OnItemCli
     private void setupListeners() {
         binding.btnCerrarSesion.setOnClickListener(v -> {
             dashboardViewModel.cerrarSesion();
-            Toast.makeText(getContext(), "Cerraste Sesión Exitosamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
         });
-
-
 
         binding.btnTheme.setOnClickListener(v -> toggleTheme());
     }

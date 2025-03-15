@@ -68,7 +68,7 @@ public class FavouritesViewModel extends ViewModel {
         });
     }
 
-    // Método para verificar si una película es favorita
+
     public void checkFavorito(String itemId, OnFavoritoCheckListener listener) {
         itemRepository.isFavorite(itemId, isFavorite -> {
             if (listener != null) {
@@ -77,7 +77,7 @@ public class FavouritesViewModel extends ViewModel {
         });
     }
 
-    // Interface para manejar la verificación de favoritos
+
     public interface OnFavoritoCheckListener {
         void onResult(boolean isFavorite);
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fighther</string>
     <string name="imagen_item">Tu texto aquí</string>
+
     <!-- Favoritos y Navegación -->
     <string name="add_to_favorites">Añadir a favoritos</string>
     <string name="remove_from_favorites">Quitar de favoritos</string>
@@ -8,6 +9,9 @@
     <string name="back">Regresar</string>
 
     <string name="no_favorites">No tienes favoritos</string>
+    <string name="clear_favorites">Limpiar Favoritos</string>
+    <string name="favorites_cleared_success">Favoritos eliminados correctamente</string>
+    <string name="favorites_cleared_error">Error al eliminar favoritos</string>
 
     <!-- Descripción de la imagen -->
     <string name="poster_description">Poster de %1$s</string>
@@ -17,7 +21,6 @@
     <string name="toolbar_description">Barra de navegación</string>
     <string name="theme_button_light">Cambiar a tema oscuro</string>
     <string name="theme_button_dark">Cambiar a tema claro</string>
-
 
     <!-- Mensajes -->
     <string name="loading_movies">Cargando...</string>
@@ -32,8 +35,4 @@
     <string name="title_logout">Cerrar sesión</string>
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>
-
-
-
-
 </resources>

@@ -26,7 +26,7 @@ public class ItemRepository {
         databaseReference.addListenerForSingleValueEvent(listener);
     }
 
-    // Método para obtener actualizaciones en tiempo real
+
     public void observeItems(ValueEventListener listener) {
         databaseReference.addValueEventListener(listener);
     }
@@ -45,10 +45,10 @@ public class ItemRepository {
 
         userFavRef.get().addOnSuccessListener(snapshot -> {
             if (snapshot.exists()) {
-                // Si existe, lo removemos
+
                 userFavRef.removeValue().addOnCompleteListener(listener);
             } else {
-                // Si no existe, lo agregamos
+
                 userFavRef.setValue(true).addOnCompleteListener(listener);
             }
         });

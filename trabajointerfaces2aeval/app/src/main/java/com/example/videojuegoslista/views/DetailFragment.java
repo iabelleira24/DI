@@ -15,14 +15,13 @@ import com.example.videojuegoslista.databinding.FragmentDetailBinding;
 import com.example.videojuegoslista.repositories.FavoritesRepository;
 
 public class DetailFragment extends Fragment {
-    // Si lo deseas, renombra el layout a fragment_detail.xml para seguir una convención,
-    // pero aquí se utiliza el existente "activity_detail" para simplificar.
+
     private FragmentDetailBinding binding;
     private FavoritesRepository favoritesRepository;
     private String itemId;
     private boolean isFavorite = false;
 
-    // Método de fábrica para crear una instancia del fragmento con los argumentos necesarios
+
     public static DetailFragment newInstance(String id, String titulo, String descripcion, String url) {
         DetailFragment fragment = new DetailFragment();
         Bundle args = new Bundle();
@@ -35,12 +34,12 @@ public class DetailFragment extends Fragment {
     }
 
     public DetailFragment() {
-        // Constructor público vacío requerido
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflar el layout usando Data Binding
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
         return binding.getRoot();
     }
@@ -49,10 +48,10 @@ public class DetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar el repositorio
+
         favoritesRepository = new FavoritesRepository();
 
-        // Recuperar los datos enviados a través de los argumentos
+
         if (getArguments() != null) {
             itemId = getArguments().getString("id");
             String titulo = getArguments().getString("title");
@@ -119,7 +118,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Limpiar la referencia del binding para evitar fugas de memoria
+
         binding = null;
     }
 }

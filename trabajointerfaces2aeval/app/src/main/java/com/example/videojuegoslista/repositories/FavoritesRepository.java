@@ -70,4 +70,17 @@ public class FavoritesRepository {
                     }
                 });
     }
+
+
+    public void clearFavorites(OnCompleteListener<Void> listener) {
+        if (auth.getCurrentUser() == null) {
+            return;
+        }
+
+        String userId = auth.getCurrentUser().getUid();
+        favoritesRef.child(userId)
+                .child("favoritos")
+                .removeValue()
+                .addOnCompleteListener(listener);
+    }
 }

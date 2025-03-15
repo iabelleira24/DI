@@ -6,22 +6,24 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.videojuegoslista.models.Item;
-import com.example.videojuegoslista.repositories.ItemRepository;
+import com.example.videojuegoslista.repositories.DashboardRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DashboardViewModel extends ViewModel {
-    private ItemRepository itemRepository;
+    private DashboardRepository dashboardRepository;
     private MutableLiveData<Boolean> navigateToLogin;
     private MutableLiveData<List<Item>> items;
     private MutableLiveData<String> error;
 
     public DashboardViewModel() {
-        itemRepository = new ItemRepository();
+        dashboardRepository = new DashboardRepository();
         navigateToLogin = new MutableLiveData<>();
         items = new MutableLiveData<>(new ArrayList<>());
         error = new MutableLiveData<>();
@@ -40,38 +42,61 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public void cerrarSesion() {
-        // Usar el UserRepository para cerrar sesión
+        dashboardRepository.signOut();
         navigateToLogin.setValue(true);
     }
 
     public void cargarItems() {
-        itemRepository.getAllItems(new ValueEventListener() {
+        dashboardRepository.getFavorites(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Item> listaItems = new ArrayList<>();
-
-                for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-                    String id = itemSnapshot.getKey();
-                    String titulo = itemSnapshot.child("title").getValue(String.class);
-                    String descripcion = itemSnapshot.child("description").getValue(String.class);
-                    String url = itemSnapshot.child("image").getValue(String.class);
-
-                    Item item = new Item();
-                    item.setId(id);
-                    item.setTitulo(titulo);
-                    item.setDescripcion(descripcion);
-                    item.setUrl(url);
-
-                    listaItems.add(item);
+            public void onDataChange(@NonNull DataSnapshot favoriteSnapshot) {
+                Set<String> favoritos = new HashSet<>();
+                for (DataSnapshot snapshot : favoriteSnapshot.getChildren()) {
+                    favoritos.add(snapshot.getKey());
                 }
 
-                items.setValue(listaItems);
+                dashboardRepository.getItems(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<Item> listaItems = new ArrayList<>();
+
+                        for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
+                            String id = itemSnapshot.getKey();
+                            if (!favoritos.contains(id)) {
+                                String titulo = itemSnapshot.child("title").getValue(String.class);
+                                String descripcion = itemSnapshot.child("description").getValue(String.class);
+                                String url = itemSnapshot.child("image").getValue(String.class);
+
+                                Item item = new Item();
+                                item.setId(id);
+                                item.setTitulo(titulo);
+                                item.setDescripcion(descripcion);
+                                item.setUrl(url);
+
+                                listaItems.add(item);
+                            }
+                        }
+
+                        items.setValue(listaItems);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        error.setValue("Error al cargar los items: " + databaseError.getMessage());
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                error.setValue("Error al cargar los items: " + databaseError.getMessage());
+                error.setValue("Error al obtener favoritos: " + databaseError.getMessage());
             }
         });
+    }
+
+
+    public void limpiarFavoritos() {
+        dashboardRepository.clearFavorites();
+        cargarItems();
     }
 }
